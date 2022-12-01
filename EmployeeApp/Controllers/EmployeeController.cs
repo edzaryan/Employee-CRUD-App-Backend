@@ -1,4 +1,5 @@
-﻿using EmployeeApp.Models;
+﻿using EmployeeApp.CustomModelBinders;
+using EmployeeApp.Models;
 using EmployeeApp.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,9 @@ namespace EmployeeApp.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetEmployeeList()
+        public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))]EmployeeSearchModel model)
         {
-            var employeeList = await _employeeRepository.GetAllEmployeesAsync();
+            var employeeList = await _employeeRepository.GetAllEmployeesAsync(employeeSearchModel: model);
 
             return Ok(employeeList);
         }

@@ -1,7 +1,9 @@
-﻿using EmployeeApp.Models;
+﻿using EmployeeApp.CustomModelBinders;
+using EmployeeApp.Models;
 using EmployeeApp.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Net;
 
 namespace EmployeeApp.Services.Repositories
@@ -31,17 +33,25 @@ namespace EmployeeApp.Services.Repositories
             return employee;
         }
 
-        public async Task<List<EmployeeListModel>> GetAllEmployeesAsync()
+        public async Task<List<EmployeeListModel>> GetAllEmployeesAsync(EmployeeSearchModel employeeSearchModel)
         {
-            var employees = await _ctx.Employees.Select(e => new EmployeeListModel()
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Surname = e.Surname,
-                Email = e.Email,
-                Department = e.Department.Name,
-                ImageFileName = $"/images/{e.ImageFileName}"
-            }).ToListAsync();
+            var employees = await _ctx.Employees
+                                    .Skip((employeeSearchModel.Page - 1) * 30)
+                                    .Take(30)
+                                    .Where(e =>
+                                        (e.Name + e.Surname).Contains(employeeSearchModel.v) &&
+                                        (e.Salary > employeeSearchModel.SalaryRange[0] && e.Salary < employeeSearchModel.SalaryRange[1]) &&
+                                        employeeSearchModel.DepartmentList.Any(d => d == e.Department.Name)
+                                     )
+                                    .Select(e => new EmployeeListModel()
+                                    {
+                                        Id = e.Id,
+                                        Name = e.Name,
+                                        Surname = e.Surname,
+                                        Email = e.Email,
+                                        Department = e.Department.Name,
+                                        ImageFileName = $"/images/{e.ImageFileName}"
+                                    }).ToListAsync();
 
             return employees;
         }
