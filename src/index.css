@@ -1,13 +1,136 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.active {
+  color: red;
+  text-decoration: underline;
 }
+
+.flx { display: flex; }
+.fjc { justify-content: center; }
+.fjb { justify-content: space-between; }
+.ff1 { flex: 1 }
+
+.w200 { width: 200px; }
+
+
+/* FLEX */
+
+.flex { display: flex; }
+.fj-r { justify-content: right; }
+.fj-l { justify-content: left; }
+.fj-c { justify-content: center; }
+.fj-b { justify-content: space-between; }
+.fj-a { justify-content: space-around; }
+
+/* MARGIN */
+
+.m5 { margin: 5px; }
+
+.ml5 { margin-left: 5px; }
+.mr5 { margin-right: 5px; }
+.mt5 { margin-top: 5px; }
+.mb5 { margin-bottom: 5px; }
+
+.m10 { margin: 10px; }
+
+.ml10 { margin-left: 10px; }
+.mr10 { margin-right: 10px; }
+.mt10 { margin-top: 10px; }
+.mb10 { margin-bottom: 10px; }
+
+.m20 { margin: 20px; }
+
+.ml20 { margin-left: 20px; }
+.mr20 { margin-right: 20px; }
+.mt20 { margin-top: 20px; }
+.mb20 { margin-bottom: 20px; }
+
+.m30 { margin: 30px; }
+
+.ml30 { margin-left: 30px; }
+.mr30 { margin-right: 30px; }
+.mt30 { margin-top: 30px; }
+.mb30 { margin-bottom: 30px; }
+
+/* PADDING */
+
+.p5 { padding: 5px; }
+.ptb5 { padding: 5px 0; }
+
+.pl5 { padding-left: 5px; }
+.pr5 { padding-right: 5px; }
+.pt5 { padding-top: 5px; }
+.pb5 { padding-bottom: 5px; }
+
+.p10 { padding: 10px; }
+.ptb10 { padding: 10px 0; }
+
+.pl10 { padding-left: 10px; }
+.pr10 { padding-right: 10px; }
+.pt10 { padding-top: 10px; }
+.pb10 { padding-bottom: 10px; }
+
+.p20 { padding: 20px; }
+.ptb10 { padding: 20px 0; }
+
+.pl20 { padding-left: 20px; }
+.pr20 { padding-right: 20px; }
+.pt20 { padding-top: 20px; }
+.pb20 { padding-bottom: 20px; }
+
+/* COLOR */
+
+.t-white { color: #FFFFFF; }
+.t-black { color: #000000; }
+
+/* BACKGROUND COLOR */
+
+.b-blue { background-color: #0D6EFD; }
+.b-green { background-color: #198754; }
+.b-grey { background-color: #6C757D }
+.b-red { background-color: #DC3545; }
+.b-white { background-color: #FFFFFF; }
+.b-black { background-color: #000000; }
+
+/* RADIUS */
+
+.rad2 { border-radius: 2px; }
+.rad5 { border-radius: 5px; }
+
+/* HEADINGS */
+
+.fs25 { font-size: 25px; }
+.fs22 { font-size: 22px; }
+.fs19 { font-size: 19px; }
+
+/* FONT-WEIGHT */
+
+.fw4 { font-weight: 400; }
+.fw5 { font-weight: 500; }
+.fw6 { font-weight: 600; }
+.fw7 { font-weight: 700; }
+.fw8 { font-weight: 800; }
+.fw9 { font-weight: 900; }
+
+/* FONT-SIZES */
+
+.fs20 { font-size: 20px; }
+
+/* BUTTONS */
+
+.btn {
+  padding: 8px 14px;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+
+
