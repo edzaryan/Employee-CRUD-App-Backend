@@ -6,9 +6,9 @@ namespace EmployeeApp.CustomModelBinders
     {
         public string v { get; set; } = "";
 
-        public int[] SalaryRange { get; set; } = { 100000, 15000000 };
+        public int[]? SalaryRange { get; set; } = null;
 
-        public string[] DepartmentList { get; set; } = { "Java" };
+        public string[]? DepartmentList { get; set; } = null;
 
         public int Page { get; set; } = 1;
     }

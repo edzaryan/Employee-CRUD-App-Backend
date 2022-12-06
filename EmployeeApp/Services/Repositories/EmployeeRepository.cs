@@ -39,10 +39,9 @@ namespace EmployeeApp.Services.Repositories
                                     .Skip((employeeSearchModel.Page - 1) * 30)
                                     .Take(30)
                                     .Where(e =>
-                                        (e.Name + e.Surname).Contains(employeeSearchModel.v) &&
-                                        (e.Salary > employeeSearchModel.SalaryRange[0] && e.Salary < employeeSearchModel.SalaryRange[1]) &&
-                                        employeeSearchModel.DepartmentList.Any(d => d == e.Department.Name)
-                                     )
+                                         (e.Name + e.Surname).Contains(employeeSearchModel.v) &&
+                                         (employeeSearchModel.SalaryRange != null ? e.Salary > employeeSearchModel.SalaryRange[0] && e.Salary < employeeSearchModel.SalaryRange[1] : true) &&
+                                         (employeeSearchModel.DepartmentList != null ? employeeSearchModel.DepartmentList.Any(d => d == e.Department.Name) : true))
                                     .Select(e => new EmployeeListModel()
                                     {
                                         Id = e.Id,
@@ -50,8 +49,9 @@ namespace EmployeeApp.Services.Repositories
                                         Surname = e.Surname,
                                         Email = e.Email,
                                         Department = e.Department.Name,
-                                        ImageFileName = $"/images/{e.ImageFileName}"
-                                    }).ToListAsync();
+                                        ImageFileName = e.ImageFileName != null ? $"/images/{e.ImageFileName}" : null 
+                                    })
+                                    .ToListAsync();
 
             return employees;
         }
