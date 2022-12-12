@@ -27,9 +27,8 @@ namespace EmployeeApp.Services.Repositories
 
         public async Task AddDepartmentAsync(Department departmentModel)
         {
-            var department = new Department { Name = departmentModel.Name };
+            await _ctx.Departments.AddAsync(departmentModel);
 
-            _ctx.Departments.Add(department);
             await _ctx.SaveChangesAsync();
         }
 

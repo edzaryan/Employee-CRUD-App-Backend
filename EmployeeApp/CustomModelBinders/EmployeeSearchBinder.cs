@@ -8,8 +8,8 @@ namespace EmployeeApp.CustomModelBinders
         {
             var data = bindingContext.HttpContext.Request.Query;
 
-            var salary_result = data.TryGetValue("salary", out var salary);
             var v_result = data.TryGetValue("v", out var v);
+            var salary_result = data.TryGetValue("salary", out var salary);
             var department_result = data.TryGetValue("department", out var department);
             var page_result = data.TryGetValue("page", out var page);
 
