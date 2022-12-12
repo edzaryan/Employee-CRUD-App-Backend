@@ -10,9 +10,9 @@ namespace EmployeeApp.Services.Interfaces
 
         Task<EmployeeDetailsModel> GetEmployeeByIdAsync(int id);
 
-        Task AddEmployeeAsync(Employee departmentModel);
+        Task AddEmployeeAsync(Employee employeeModel);
 
-        Task UpdateEmployeePatchAsync(int employeeId, JsonPatchDocument employeeModel);
+        Task UpdateEmployeePatchAsync(int employeeId, JsonPatchDocument employeeModel); 
 
         Task UpdateEmployeeImageAsync(int employeeId, IFormFile uploadedFile);
 
