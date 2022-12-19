@@ -21,9 +21,9 @@ namespace EmployeeApp.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))]EmployeeSearchModel model)
+        public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))]EmployeeSearchModel employeeSearchModel)
         {
-            var employeeList = await _employeeRepository.GetAllEmployeesAsync(employeeSearchModel: model);
+            var employeeList = await _employeeRepository.GetAllEmployeesAsync(employeeSearchModel);
 
             return Ok(employeeList);
         }

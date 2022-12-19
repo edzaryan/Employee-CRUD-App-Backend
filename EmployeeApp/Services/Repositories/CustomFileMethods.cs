@@ -27,14 +27,11 @@ namespace EmployeeApp.Services.Repositories
 
         public void DeleteFile(string fileName, string directoryName)
         {
-            if (fileName == null)
-                return;
+            string fullFilePath = $"{_env.WebRootPath}\\{directoryName}\\{fileName}";
 
-            string fileFullName = $"{_env.WebRootPath}\\{directoryName}\\{fileName}";
-
-            if (File.Exists(fileFullName))
+            if (File.Exists(fullFilePath))
             {
-                File.Delete(fileFullName);
+                File.Delete(fullFilePath);
             }
         }
 

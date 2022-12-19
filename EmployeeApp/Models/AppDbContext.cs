@@ -4,8 +4,8 @@ namespace EmployeeApp.Models
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Employee> Employees { get; set; } 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; } = null!;
+        public DbSet<Department> Departments { get; set; } = null!;
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
@@ -60,38 +60,37 @@ namespace EmployeeApp.Models
 
             modelBuilder
                 .Entity<Department>()
-                .HasData(new Department[]
-            {
-                            new()
-                            {
-                                Id = 1,
-                                Name = "IOS Developer"
-                            },
-                            new()
-                            {
-                                Id = 2,
-                                Name = "Android Developer"
-                            },
-                            new()
-                            {
-                                Id = 3,
-                                Name = "React.js Developer"
-                            },
-                            new()
-                            {
-                                Id = 4,
-                                Name = "HR"
-                            },
-                            new()
-                            {
-                                Id = 5,
-                                Name = "UI/UX Designer"
-                            },
-                            new()
-                            {
-                                Id = 6,
-                                Name = "Graphic Designer"
-                            },
+                .HasData(new Department[] {
+                    new()
+                    {
+                        Id = 1,
+                        Name = "IOS Developer"
+                    },
+                    new()
+                    {
+                        Id = 2,
+                        Name = "Android Developer"
+                    },
+                    new()
+                    {
+                        Id = 3,
+                        Name = "React.js Developer"
+                    },
+                    new()
+                    {
+                        Id = 4,
+                        Name = "HR"
+                    },
+                    new()
+                    {
+                        Id = 5,
+                        Name = "UI/UX Designer"
+                    },
+                    new()
+                    {
+                        Id = 6,
+                        Name = "Graphic Designer"
+                    },
             });
 
             modelBuilder
