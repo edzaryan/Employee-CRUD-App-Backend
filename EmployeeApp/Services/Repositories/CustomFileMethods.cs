@@ -15,9 +15,9 @@ namespace EmployeeApp.Services.Repositories
 
             string uniqueFileName = $"{UniqueStringGenerator(10)}{Path.GetExtension(file.FileName)}";
 
-            string fileFullName = $"{uploadsDirectoryName}\\{uniqueFileName}";
+            string filePath = $"{uploadsDirectoryName}\\{uniqueFileName}";
 
-            using (var fileStream = new FileStream(fileFullName, FileMode.Create))
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
             }

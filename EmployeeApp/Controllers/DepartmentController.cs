@@ -2,9 +2,6 @@
 using EmployeeApp.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace EmployeeApp.Controllers
 {
@@ -51,8 +48,6 @@ namespace EmployeeApp.Controllers
 
             return Ok();
         }
-
-        
     }
 }
  
