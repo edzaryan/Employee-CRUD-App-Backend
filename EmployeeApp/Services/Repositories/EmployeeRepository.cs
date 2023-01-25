@@ -19,37 +19,41 @@ namespace EmployeeApp.Services.Repositories
 
         public async Task<EmployeeDetailsModel> GetEmployeeByIdAsync(int id)
         {
-            var employee = await _ctx.Employees.Select(e => new EmployeeDetailsModel()
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Surname = e.Surname,
-                Email = e.Email,
-                Department = e.Department.Name
-            }).FirstOrDefaultAsync();
-
-            return employee;
+            return await _ctx.Employees
+                            .Select(e => new EmployeeDetailsModel
+                            {
+                                Id = e.Id,
+                                Name = e.Name,
+                                Surname = e.Surname,
+                                Email = e.Email,
+                                Department = e.Department.Name,
+                                Description = e.Description,
+                                DateOfBirth = e.DateOfBirth,
+                                ImageFileName = e.ImageFileName != null ? $"/images/{e.ImageFileName}" : null,
+                                PhoneNumber = e.PhoneNumber,
+                                Salary = e.Salary
+                            }).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<List<EmployeeListModel>> GetAllEmployeesAsync(EmployeeSearchModel employeeSearchModel)
         {
             var employees = await _ctx.Employees
-                                            .Skip((employeeSearchModel.Page - 1) * 30)
-                                            .Take(30)
-                                            .Where(e =>
-                                                 (e.Name + e.Surname).Contains(employeeSearchModel.v) &&
-                                                 (employeeSearchModel.SalaryRange != null ? e.Salary > employeeSearchModel.SalaryRange[0] && e.Salary < employeeSearchModel.SalaryRange[1] : true) &&
-                                                 (employeeSearchModel.DepartmentList != null ? employeeSearchModel.DepartmentList.Any(d => d == e.Department.Name) : true))
-                                            .Select(e => new EmployeeListModel()
-                                            {
-                                                Id = e.Id,
-                                                Name = e.Name,
-                                                Surname = e.Surname,
-                                                Email = e.Email,
-                                                Department = e.Department.Name,
-                                                ImageFileName = e.ImageFileName != null ? $"/images/{e.ImageFileName}" : null 
-                                            })
-                                            .ToListAsync();
+                                    .Skip((employeeSearchModel.Page - 1) * 30)
+                                    .Take(30)
+                                    .Where(e =>
+                                            (e.Name + e.Surname).Contains(employeeSearchModel.v) &&
+                                            (employeeSearchModel.SalaryRange != null ? e.Salary > employeeSearchModel.SalaryRange[0] && e.Salary < employeeSearchModel.SalaryRange[1] : true) &&
+                                            (employeeSearchModel.DepartmentList != null ? employeeSearchModel.DepartmentList.Any(d => d == e.Department.Name) : true))
+                                    .Select(e => new EmployeeListModel()
+                                    {
+                                        Id = e.Id,
+                                        Name = e.Name,
+                                        Surname = e.Surname,
+                                        Email = e.Email,
+                                        Department = e.Department.Name,
+                                        ImageFileName = e.ImageFileName != null ? $"/images/{e.ImageFileName}" : null 
+                                    })
+                                    .ToListAsync();
 
             return employees;
         }
@@ -93,6 +97,7 @@ namespace EmployeeApp.Services.Repositories
             string uniqueFileName = await _fileFunctions.UploadFileAsync(uploadedFile, "images");
 
             employee.ImageFileName = uniqueFileName;
+
             await _ctx.SaveChangesAsync();
         }
     }

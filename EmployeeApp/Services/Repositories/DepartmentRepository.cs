@@ -51,5 +51,14 @@ namespace EmployeeApp.Services.Repositories
 
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task<DepartmentListModel> GetDepartmentByIdAsync(int id)
+        {
+            return await _ctx.Departments.Select(d => new DepartmentListModel
+            {
+                Id = d.Id,
+                Name = d.Name,
+            }).FirstOrDefaultAsync(d => d.Id == id);
+        }
     }
 }

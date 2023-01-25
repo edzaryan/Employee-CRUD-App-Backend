@@ -7,6 +7,8 @@ namespace EmployeeApp.Services.Interfaces
     {
         Task<List<DepartmentListModel>> GetAllDepartmentsAsync();
 
+        Task<DepartmentListModel> GetDepartmentByIdAsync(int id);
+
         Task AddDepartmentAsync(Department departmentModel);
 
         Task UpdateDepartmentPatchAsync(int departmentId, JsonPatchDocument departmentModel);

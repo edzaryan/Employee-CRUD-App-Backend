@@ -1,7 +1,5 @@
 ﻿using EmployeeApp.CustomValidation;
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeApp.Models
 {

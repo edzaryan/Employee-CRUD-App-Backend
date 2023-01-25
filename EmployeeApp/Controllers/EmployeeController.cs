@@ -11,17 +11,15 @@ namespace EmployeeApp.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private readonly IFileCustomFunctions _fileFunctions;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, IFileCustomFunctions fileFunctions)
+        public EmployeeController(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
-            _fileFunctions = fileFunctions;
         }
 
 
         [HttpGet]
-        public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))]EmployeeSearchModel employeeSearchModel)
+        public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))] EmployeeSearchModel employeeSearchModel)
         {
             var employeeList = await _employeeRepository.GetAllEmployeesAsync(employeeSearchModel);
 

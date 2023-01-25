@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221128084505_Initial")]
+    [Migration("20230124101830_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -102,7 +102,8 @@ namespace EmployeeApp.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -112,7 +113,8 @@ namespace EmployeeApp.Migrations
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -159,6 +161,19 @@ namespace EmployeeApp.Migrations
                             PhoneNumber = "043567889",
                             Salary = 490000,
                             Surname = "Tumanyan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateOfBirth = "1945/06/23",
+                            DepartmentId = 5,
+                            Description = "John Carlin description Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                            Email = "johncarlin45@gmail.com",
+                            ImageFileName = "defaultProfile.png",
+                            Name = "John",
+                            PhoneNumber = "041567844",
+                            Salary = 510000,
+                            Surname = "Carlin"
                         });
                 });
 

@@ -22,13 +22,21 @@ namespace EmployeeApp.Controllers
             return Ok(departmentList);
         }
 
+        [HttpGet("{departmentId}")]
+        public async Task<IActionResult> GetDepartmentById([FromRoute] int departmentId)
+        {
+            var department = await _departmentRepository.GetDepartmentByIdAsync(departmentId);
+
+            return Ok(department);
+        }
+
 
         [HttpPost("")]
         public async Task<IActionResult> CreateDepartment([FromBody] Department department)
         {
             await _departmentRepository.AddDepartmentAsync(department);
 
-            return Ok();
+            return Ok(department.Id);
         }
 
 
