@@ -22,6 +22,7 @@ namespace EmployeeApp.Controllers
             return Ok(departmentList);
         }
 
+
         [HttpGet("{departmentId}")]
         public async Task<IActionResult> GetDepartmentById([FromRoute] int departmentId)
         {

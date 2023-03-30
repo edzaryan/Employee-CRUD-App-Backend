@@ -37,6 +37,9 @@ namespace EmployeeApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Departments");
 
                     b.HasData(
@@ -92,7 +95,7 @@ namespace EmployeeApp.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImageFileName")
                         .HasColumnType("nvarchar(max)");
@@ -103,7 +106,7 @@ namespace EmployeeApp.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Salary")
                         .HasColumnType("int");
@@ -116,6 +119,15 @@ namespace EmployeeApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
+
+                    b.HasIndex("Name", "Surname");
 
                     b.ToTable("Employees");
 

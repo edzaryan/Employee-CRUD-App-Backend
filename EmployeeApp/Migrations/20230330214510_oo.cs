@@ -7,7 +7,7 @@
 namespace EmployeeApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class oo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,10 +34,10 @@ namespace EmployeeApp.Migrations
                     DepartmentId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salary = table.Column<int>(type: "int", nullable: false)
                 },
@@ -77,9 +77,33 @@ namespace EmployeeApp.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Departments_Name",
+                table: "Departments",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",
                 table: "Employees",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Email",
+                table: "Employees",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Name_Surname",
+                table: "Employees",
+                columns: new[] { "Name", "Surname" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_PhoneNumber",
+                table: "Employees",
+                column: "PhoneNumber",
+                unique: true,
+                filter: "[PhoneNumber] IS NOT NULL");
         }
 
         /// <inheritdoc />

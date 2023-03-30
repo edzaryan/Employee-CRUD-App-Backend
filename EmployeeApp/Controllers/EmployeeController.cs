@@ -12,13 +12,10 @@ namespace EmployeeApp.Controllers
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
-        {
-            _employeeRepository = employeeRepository;
-        }
+        public EmployeeController(IEmployeeRepository employeeRepository) => _employeeRepository = employeeRepository;
 
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetEmployeeList([FromQuery] [ModelBinder(typeof(EmployeeSearchBinder))] EmployeeSearchModel employeeSearchModel)
         {
             var employeeList = await _employeeRepository.GetAllEmployeesAsync(employeeSearchModel);
@@ -36,7 +33,7 @@ namespace EmployeeApp.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("")]
         public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
         {
             await _employeeRepository.AddEmployeeAsync(employee);

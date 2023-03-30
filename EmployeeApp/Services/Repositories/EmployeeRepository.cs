@@ -60,9 +60,16 @@ namespace EmployeeApp.Services.Repositories
 
         public async Task AddEmployeeAsync(Employee employeeModel)
         {
-            await _ctx.Employees.AddAsync(employeeModel);
+            try
+            {
+                await _ctx.Employees.AddAsync(employeeModel);
 
-            await _ctx.SaveChangesAsync();
+                await _ctx.SaveChangesAsync();
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public async Task DeleteEmployeeAsync(int id)

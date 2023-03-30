@@ -112,6 +112,25 @@ namespace EmployeeApp.Models
                 .WithMany(d => d.Employees)
                 .HasForeignKey(e => e.DepartmentId)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder
+                .Entity<Department>()
+                .HasIndex(d => new { d.Name })
+                .IsUnique();
+
+            modelBuilder
+                .Entity<Employee>()
+                .HasIndex(e => new { e.Name, e.Surname });
+
+            modelBuilder
+                .Entity<Employee>()
+                .HasIndex(e => new { e.Email })
+                .IsUnique();
+
+            modelBuilder
+                .Entity<Employee>()
+                .HasIndex(e => new { e.PhoneNumber })
+                .IsUnique();
         }
     }
 }
